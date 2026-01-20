@@ -34,7 +34,10 @@ ar_sub$pi_todos_2 <- NA
 ar_sub$pi_todos_3 <- NA
 
 
-ar_sub <- ar %>%
+
+
+
+ar_sub <- ar %>% # Fehler, weil ar_sub immer wieder überschrieben wird
   mutate(pi_todos = case_when(
     p16a_AR_1 >= 60 & p36a_AR_1 >= 7 ~ 1,
     p16a_AR_1 < 60 & p36a_AR_1 < 7 ~ 0
@@ -73,3 +76,19 @@ prop.table(table(ar_sub$pi_todos_2, useNA = "ifany"))
 prop.table(table(ar_sub$pi_todos_3, useNA = "ifany"))
 
 
+
+ar_sub <- ar_sub %>%
+  mutate(p16a_AR_1_scaled = p16a_AR_1/10)
+table(ar_sub$p16a_AR_1_scaled, useNA = "ifany")
+
+library(psych)
+
+pi_todos_kon <- ar_sub %>%
+  select(p36a_AR_1, p16a_AR_1_scaled)
+alpha(pi_todos_kon)
+
+
+ar_sub <- ar_sub %>%
+  mutate(pi_todos_kon = (p16a_AR_1_scaled + p36a_AR_1)/2)
+
+summary(ar_sub$pi_todos_kon)
