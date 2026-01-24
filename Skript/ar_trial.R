@@ -75,7 +75,15 @@ prop.table(table(ar_sub$pi_todos, useNA = "ifany"))
 prop.table(table(ar_sub$pi_todos_2, useNA = "ifany"))
 prop.table(table(ar_sub$pi_todos_3, useNA = "ifany"))
 
+# ---- Parteiidentität Index ----
+## Stand: 20.01.26 
+### Ich habe mit den Variablen p16 (nähe zu wählern einer partei 0-100) und p36 (wahlwahrscheinlichkeit partei 0-10) einen Index berechnet
+### Hierzu habe ich die Skala der p16 Variable auf 0-10 gekürzt um einen summenindex zu berechnen 0-10, die realibilität wurde mit cronbachs alpha getestet (ca. 0,8)
 
+# To Do
+## Parteiidentität für alle Wellen und Parteien erstellen
+### [] Kontinuierlich (Stärke Parteiidentität)
+### [] Dichotom (Vergleich NPID und PPID)
 
 ar_sub <- ar_sub %>%
   mutate(p16a_AR_1_scaled = p16a_AR_1/10)
